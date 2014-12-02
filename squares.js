@@ -1,11 +1,21 @@
+function negate(i) {
+    return i < 0 ? Math.abs(i) : 0 - i;
+}
+
+function collisionX(self) {
+    return self.x < 0 || self.x + self.w > 640;
+}
+
+function collisionY(self) {
+    return self.y < 0 || self.y + self.w > 480;
+}
 
 function newSquareSprite(options) {
 				
     var self = {};
     
     self.context = options.context;
-    self.oldX = options.x;
-    self.oldY = options.y;
+    self.tick = 1;
     self.x = options.x;
     self.y = options.y;
     self.w = options.w;
@@ -18,8 +28,14 @@ function newSquareSprite(options) {
     };
     
     self.step = function() {
-        self.oldX = self.x;
-        self.oldY = self.y;
+        
+        self.tick++;
+        
+        if (collisionX(self))
+            self.vec.x = negate(self.vec.x);
+        if (collisionY(self))
+            self.vec.y = negate(self.vec.y);
+        
         self.x += self.vec.x * self.vec.s;
         self.y += self.vec.y * self.vec.s;
     };
