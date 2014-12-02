@@ -1,0 +1,4 @@
+squares
+=======
+
+Fun with squares!
