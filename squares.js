@@ -36,6 +36,8 @@ function newSquareSprite(options) {
         if (collisionY(self))
             self.vec.y = negate(self.vec.y);
         
+        self.vec.y = self.vec.y + 0.1;
+        
         self.x += self.vec.x * self.vec.s;
         self.y += self.vec.y * self.vec.s;
     };
